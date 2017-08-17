@@ -1,0 +1,19 @@
+<ion-view title="Directory" id="page9" style="background-color:#000080;">
+  <ion-content padding="true" class="has-header">
+    <form id="directory-form4" class="list">
+      <label class="item item-input" id="directory-search2">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" placeholder="" ng-model="data.search" ng-change="search()">
+      </label>
+    </form>
+    <div class="list card" id="directory-card22" ng-repeat="member in directory">
+      <ion-item class="item-avatar item-icon-right" href="mailto:{{member.Email}}">
+        <img gravatar-src="member.Email" gravatar-size="100" onerror="this.src='http://i.ebayimg.com/images/i/141589534531-0-1/s-l1000.jpg'">
+        <h2>{{member.Name}}</h2>
+        <p>{{member.Email}}</p>
+        <p>{{member.Position}}</p>
+        <i class="icon ion-email"></i>
+      </ion-item>
+    </div>
+  </ion-content>
+</ion-view>

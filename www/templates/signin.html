@@ -1,0 +1,32 @@
+<ion-view title="Signin" style="background-color:#FFFFFF;" hide-nav-bar="true">
+  <ion-content padding="true" class=" manual-remove-top-padding has-header">
+    <div ng-if="error" style="text-align:center;" class="show-list-numbers-and-dots error-box">
+      <p style="color:#000000;">{{error}}</p>
+    </div>
+    <div class="spacer" style="width: 300px; height: 21px;"></div>
+    <div>
+      <img src="img/YzbICGsQSYObKqyDYFTY_7qn6y4ja8gn030eougt3_400x400.jpeg" style="display: block; width: 40%; height: auto; margin-left: auto; margin-right: auto;">
+    </div>
+    <form class="list">
+      <div class="spacer" style="width: 300px; height: 25px;"></div>
+      <ion-list>
+        <label class="item item-input" name="email">
+          <span class="input-label">Username</span>
+          <input type="email" placeholder="" ng-model="data.email">
+        </label>
+        <label class="item item-input" name="password">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="" ng-model="data.password">
+        </label>
+      </ion-list>
+      <button ng-click="login()" style="color:#FFFFFF;" class="button button-stable button-block">Sign in</button>
+      <a ng-click="resetPassword()" style="color:#000080; text-align: center;" href="javascript:void(0);">Forgot Password?</a>
+      <br>
+      <hr>
+      <p>Need to Register?</p>
+      <button ng-click="register()" style="color:#FFFFFF;" class="button button-stable button-block">Register</button>
+
+
+    </form>
+  </ion-content>
+</ion-view>

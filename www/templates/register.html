@@ -1,0 +1,29 @@
+<ion-view title="Register" style="background-color:#FFFFFF;">
+  <ion-content padding="true" class="has-header" background="https://pbs.twimg.com/profile_images/2521991163/7qn6y4ja8gn030eougt3_400x400.jpeg">
+    <div ng-if="error" class="show-list-numbers-and-dots error-box">
+      <p style="color:#000000;">{{error}}</p>
+    </div>
+    <form class="list">
+      <br>
+      <br>
+      <p style="color:#000080;font-size:20px;text-align:center">Thank you for connecting to Oswego East Wolf Parents!</p>
+      <br>
+      <br>
+      <p style="color:#000080;font-size:15px;text-align:center">Parent/Guardian Name</p>
+      <label class="item item-input" text="">
+        <input type="text" ng-model="data.name">
+      </label>
+      <br>
+      <p style="color:#000080;font-size:15px;text-align:center">Email</p>
+      <label class="item item-input">
+        <input type="email" placeholder="Email" ng-model="data.email">
+      </label>
+      <br>
+      <p style="color:#000080;font-size:15px;text-align:center">Password</p>
+      <label class="item item-input">
+        <input type="password" placeholder="Password" ng-model="data.password">
+      </label>
+    </form>
+    <button ng-click="signup()" class="button button-stable button-block">Register</button>
+  </ion-content>
+</ion-view>

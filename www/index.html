@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    
+    
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <link href="css/ionic.app.css" rel="stylesheet">
+
+    <style type="text/css">
+      .platform-ios .manual-ios-statusbar-padding{
+        padding-top:20px;
+      }
+      .manual-remove-top-padding{
+        padding-top:0px; 
+      }
+      .manual-remove-top-padding .scroll{
+        padding-top:0px !important;
+      }
+      ion-list.manual-list-fullwidth div.list, .list.card.manual-card-fullwidth {
+        margin-left:-10px;
+        margin-right:-10px;
+      }
+      ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidth > .item {
+        border-radius:0px;
+        border-left:0px;
+        border-right: 0px;
+      }
+      .show-list-numbers-and-dots ul{
+        list-style-type: disc;
+        padding-left:40px;
+      }
+      .show-list-numbers-and-dots ol{
+        list-style-type: decimal;
+        padding-left:40px;
+      }
+    </style>
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/routes.js"></script>
+    
+    <script src="js/directives.js"></script>
+    <script src="js/ionic.cloud.min.js"></script>
+    <script src="js/ionic.cloud.init.js"></script>
+    <script src="js/gravatar.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.15.0/lodash.min.js"></script>
+    <script src="js/angular-simple-logger.js"></script>
+    <script src="js/angular-google-maps.min.js"></script>
+    <script src="js/googlemaps.init.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+    <script src="js/firebase.init.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/sha.js"></script>
+
+    <!-- Only required for Tab projects w/ pages in multiple tabs 
+    <script src="lib/ionicuirouter/ionicUIRouter.js"></script>
+    -->
+
+  </head>
+  <body ng-app="app" animation="slide-left-right-ios7">
+  <div>
+  <ion-side-menus enable-menu-with-back-views="true" data-componentid="side-menu21">
+    <ion-side-menu-content>
+      <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button></ion-nav-back-button>
+        <ion-nav-buttons side="left">
+          <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ></button>
+        </ion-nav-buttons>
+      </ion-nav-bar>
+      <ion-nav-view></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left" id="side-menu21" style="background-color:#003366;">
+      <ion-content ng-controller="menuCtrl" padding="true" style="top:0px !important;" class="side-menu-left ">
+        <div data-componentid="html10"></div>
+        <div class="profile-image" data-componentid="image9">
+          <img src="img/hR08txjDRrihjs5p2XWN_smiley.jpg" style="display: block; width: 40%; height: auto; margin-left: auto; margin-right: auto;" gravatar-src="userData.email" gravatar-size="200">
+        </div>
+        <h4 id="menu-heading14" style="color:#FFFFFF;text-align:center;" data-componentid="heading14">{{userData.name}}</h4>
+        <h5 id="menu-heading15" style="color:#FFFFFF;text-align:center;" data-componentid="heading15">{{userData.email}}</h5>
+        <div class="spacer" data-componentid="spacer14" style="width: 248px; height: 10px;"></div>
+        <ion-list id="menu-list3" data-componentid="list3">
+          <ion-item class="item-icon-left" id="menu-list-item4" ui-sref="tabsController.latestNews()" menu-close="" data-componentid="list-item4">
+            <i class="icon ion-clipboard"></i>News</ion-item>
+          <ion-item class="item-icon-left" id="menu-list-item5" href-inappbrowser="https://signup.com/group/747166366047?utm_source=group-badge-volunteer-green" data-componentid="list-item5">
+            <i class="icon ion-ios-people"></i>Volunteer</ion-item>
+          <ion-item class="item-icon-left" id="menu-list-item20" href-inappbrowser="http://www.oewolfparents.com/east-fundraisers.html" data-componentid="list-item20">
+            <i class="icon ion-ios-people-outline"></i>Fundraising</ion-item>
+          <ion-item class="item-icon-left" id="menu-list-item10" ui-sref="directory()" menu-close="" data-componentid="list-item10">
+            <i class="icon ion-android-list"></i>Directory</ion-item>
+          <ion-item class="item-icon-left" id="menu-list-item6" ui-sref="shop()" menu-close="" data-componentid="list-item6">
+            <i class="icon ion-android-playstore"></i>Shop</ion-item>
+          <ion-item class="item-icon-left" id="menu-list-item12" href-inappbrowser="http://www.oewolfparents.com/membership.html" data-componentid="list-item12">
+            <i class="icon ion-android-person"></i>Membership Form</ion-item>
+          <ion-item class="item-icon-left" id="menu-list-item11" ui-sref="teacherNotes()" menu-close="" data-componentid="list-item11">
+            <i class="icon ion-android-clipboard"></i>Teachers Contact Us!</ion-item>
+          <ion-item ng-click="logout();" class="item-icon-left" ui-sref="signin()" menu-close="" data-componentid="html13">
+            <i class="icon ion-log-out"></i>Log out</ion-item>
+        </ion-list>
+        <div class="spacer" data-componentid="spacer6" style="width: 268px; height: 31px;"></div>
+      </ion-content>
+    </ion-side-menu>
+  </ion-side-menus>
+</div>
+  </body>
+</html>

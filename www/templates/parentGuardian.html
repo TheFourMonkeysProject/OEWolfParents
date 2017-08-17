@@ -1,0 +1,32 @@
+<ion-view title="Parent/Guardian" style="background-color:#FFFFFF;">
+  <ion-content padding="true" class="has-header">
+    <form class="list">
+      <h4 style="color:#000000;">Parent/Guardian Name</h4>
+      <label class="item item-input" name="Name_">
+        <input type="text" placeholder="" name="Name" ng-model="user.Name">
+      </label>
+      <h4 style="color:#000000;">Email Address</h4>
+      <label class="item item-input" name="Email_">
+        <input type="email" placeholder="" name="Email" ng-model="user.Email">
+      </label>
+      <h4 style="color:#000000;">Contact Phone Number</h4>
+      <label class="item item-input" name="Phone_">
+        <input type="tel" placeholder="" name="Phone" ng-model="user.Phone">
+      </label>
+      <h4 style="color:#000000;">Membership Dues</h4>
+      <label class="item item-select">
+        <span class="input-label">Dues Amount</span>
+        <select name="Dues" ng-model="user.Dues">
+          <option>10.00</option>
+          <option>20.00</option>
+          <option>50.00</option>
+          <option>100.00</option>
+        </select>
+      </label>
+      <a ng-click="registerParents();" class="button button-energized button-block">Next &gt;&gt;</a>
+
+    </form>
+    <!--<input type="submit" class="button button-energized button-block"  ui-sref="studentInformation()">-->
+  </ion-content>
+
+</ion-view>
