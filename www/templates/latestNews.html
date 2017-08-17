@@ -1,6 +1,22 @@
-<ion-view cache-view="false" title="Latest News" style="background-color:#FFFFFF;" ng-init="twttr()">
+<ion-view cache-view="true" title="Latest News" style="background-color:#FFFFFF;">
   <ion-content padding="true" class="has-header">
     <a class="twitter-timeline" href="https://twitter.com/OEHSWolfParents">Tweets by OEHSWolfParents</a>
     <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
   </ion-content>
 </ion-view>
+<!--<script>(function(d, s, id) {
+      console.log("In Twitter JS in browser");
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+      return t;
+    }(document, "script", "twitter-wjs"));</script>-->

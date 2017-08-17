@@ -7,10 +7,11 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-    
+
 
       .state('tabsController', {
-    url: '/page1',
+    url: '/wolfnews',
+    reload: true,
     templateUrl: 'templates/tabsController.html',
     abstract:true
   })
@@ -83,12 +84,19 @@ angular.module('app.routes', [])
 
   .state('tabsController.latestNews', {
     url: '/latestNews',
+    reload: true,
     views: {
       'tab2': {
         templateUrl: 'templates/latestNews.html',
         controller: 'latestNewsCtrl'
       }
     }
+  })
+
+  .state('lastestNews', {
+    url:'/latestNews',
+    templateUrl: 'templates/latestNews.html',
+    controller: 'latestNewsCtrl'
   })
 
   .state('teacherNotes', {
