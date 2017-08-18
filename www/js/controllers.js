@@ -6,8 +6,18 @@ angular.module('app.controllers', [])
 function ($scope, $stateParams, $ionicUser, $ionicAuth, $state) {
 
     console.log("hello");
-    if ($ionicAuth.isAuthenticated()){
-        $scope.userData = $ionicUser.details;
+    $scope.$on('user:updated', function(event,data) {
+      console.log('Listenin g for update user!')
+      if ($ionicAuth.isAuthenticated()){
+           $scope.userData = $ionicUser.details;
+      }
+    });
+
+    $scope.refreshLogin = function(){
+      console.log("HI there");
+      if ($ionicAuth.isAuthenticated()){
+           $scope.userData = $ionicUser.details;
+      }
     }
 
     $scope.logout = function(){
@@ -17,10 +27,11 @@ function ($scope, $stateParams, $ionicUser, $ionicAuth, $state) {
 
 }])
 
-.controller('signinCtrl', ['$scope', '$stateParams', '$ionicUser', '$ionicAuth', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('signinCtrl', ['$scope', '$stateParams', '$ionicUser', '$ionicAuth',
+              '$state', '$rootScope', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicUser, $ionicAuth, $state) {
+function ($scope, $stateParams, $ionicUser, $ionicAuth, $state, $rootScope) {
 
     $scope.data = {
         'email': '',
@@ -32,6 +43,8 @@ function ($scope, $stateParams, $ionicUser, $ionicAuth, $state) {
     if ($ionicAuth.isAuthenticated()) {
         // Make sure the user data is going to be loaded
         $ionicUser.load().then(function() {});
+        $rootScope.$broadcast('user:updated','userInfo');
+        //$ionicSideMenuDelegate.toggleLeft();
         $state.go('tabsController.latestNews');
     }
 
@@ -265,10 +278,14 @@ function ($scope, $stateParams) {
 
 }])
 
-.controller('teachersCtrl', ['$scope', '$stateParams', '$ionicAuth', '$ionicUser', 'TeacherService', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('teachersCtrl', ['$scope', '$stateParams', '$ionicAuth',
+              '$ionicUser', 'TeacherService', '$state', '$ionicPopup',
+              '$ionicLoading',
+// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicAuth, $ionicUser, TeacherService, $state) {
+function ($scope, $stateParams, $ionicAuth, $ionicUser, TeacherService, $state,
+            $ionicPopup, $ionicLoading) {
     $scope.userData = $ionicUser.details;
     console.log("User: " + $scope.userData.name);
     $scope.data ={
@@ -276,16 +293,33 @@ function ($scope, $stateParams, $ionicAuth, $ionicUser, TeacherService, $state) 
         'Teacher': '',
         'Needs': ''
     }
+    $scope.show = function() {
+            $ionicLoading.show({
+              template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+             });
+     };
+    $scope.hide = function(){
+            $ionicLoading.hide();
+    };
 
     $scope.submitNeed = function(){
-        console.log("I need this;");
+        $scope.show($ionicLoading);
         var params = {
             'Teacher': $scope.userData.name,
             'Needs':$scope.data.message
         }
         TeacherService.add(params).then(function(res){
                 console.log(res);
-                $state.go('tabsController.latestNews_tab2');
+                $scope.hide($ionicLoading);
+                $ionicPopup.alert({
+                    title: 'Thanks for letting us know!',
+                    template: 'Your request has been sent to OE Wolf Parents.'
+                });
+                //$state.go('tabsController.latestNews');
+                $scope.data = {
+                  message:''
+                };
+
         })
     }
 
@@ -311,13 +345,11 @@ function ($scope, $stateParams) {
 }])
 
 .controller('latestNewsCtrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicAuth', '$ionicSideMenuDelegate',
-              '$window',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicLoading, $ionicAuth, $ionicSideMenuDelegate, $window) {
+              '$window', '$state',
+function ($scope, $stateParams, $ionicLoading, $ionicAuth, $ionicSideMenuDelegate,
+  $window, $state) {
 
   $scope.$on("$ionicView.beforeEnter", function() {
-    //$window.location.reload(true);
     if ($ionicAuth.isAuthenticated()){
       console.log('User is authed');
 
@@ -330,21 +362,17 @@ function ($scope, $stateParams, $ionicLoading, $ionicAuth, $ionicSideMenuDelegat
                 js.id = id;
                 js.src = "https://platform.twitter.com/widgets.js";
                 fjs.parentNode.insertBefore(js, fjs);
-
                 t._e = [];
                 t.ready = function(f) {
                   t._e.push(f);
                 };
-                 // $scope.$broadcast('scroll.refreshComplete');
+                console.log(t);
                 return t;
               }(document, "script", "twitter-wjs"));
-
-
   }
   else{
       $state.go('signin')
   }
-
 });
 
 }])
@@ -355,6 +383,10 @@ function ($scope, $stateParams, $ionicLoading, $ionicAuth, $ionicSideMenuDelegat
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
+  $scope.updatePreference = function(){
+    console.log("Hello Do not Show Checkbox");
+        console.log($scope.doNotShow.checked);
+  }
     //if (!$ionicAuth.isAuthenticated()){
     //    $state.go('signin');
 //    }
