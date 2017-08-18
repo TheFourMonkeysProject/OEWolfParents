@@ -5,20 +5,23 @@ angular.module('app.controllers', [])
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, $ionicUser, $ionicAuth, $state) {
 
-    console.log("hello");
-    $scope.$on('user:updated', function(event,data) {
-      console.log('Listenin g for update user!')
-      if ($ionicAuth.isAuthenticated()){
+    if ($ionicAuth.isAuthenticated()){
            $scope.userData = $ionicUser.details;
-      }
-    });
+    };
+    //onsole.log("hello");
+    //$scope.$on('user:updated', function(event,data) {
+  //    console.log('Listenin g for update user!')
+  //    if ($ionicAuth.isAuthenticated()){
+  //         $scope.userData = $ionicUser.details;
+  //    }
+  //  });
 
-    $scope.refreshLogin = function(){
-      console.log("HI there");
-      if ($ionicAuth.isAuthenticated()){
-           $scope.userData = $ionicUser.details;
-      }
-    }
+  //  $scope.refreshLogin = function(){
+  //    console.log("HI there");
+//      if ($ionicAuth.isAuthenticated()){
+//           $scope.userData = $ionicUser.details;
+//      }
+//    }
 
     $scope.logout = function(){
         $ionicAuth.logout();
