@@ -1,6 +1,6 @@
 {
-  "name": "WolfParents",
-  "app_id": "",
+  "name": "OE WOlf Parents",
+  "app_id": "org.fourmonkeys.wolfparents",
   "type": "ionic1",
   "integrations": {
     "cordova": {},

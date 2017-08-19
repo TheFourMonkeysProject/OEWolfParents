@@ -1,7 +1,7 @@
 {
-    "name": "WolfParents",
-    "version": "0.0.1",
-    "description": "An Ionic project",
+    "name": "org.fourmonkeys.wolfparents",
+    "version": "0.0.4",
+    "description": "OE WOlf Parents",
     "devDependencies": {
         "gulp": "^3.5.6",
         "gulp-clean-css": "^3.7.0",
