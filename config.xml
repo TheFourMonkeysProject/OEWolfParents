@@ -3,7 +3,7 @@
     <name>OE Wolf Parents</name>
     <description>Our members app!</description>
     <author email="alfred@fourmonkeys.org" href="http://fourmonkeys.org/">FourMonkeys</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://10.0.0.205:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-navigation href="*" />
